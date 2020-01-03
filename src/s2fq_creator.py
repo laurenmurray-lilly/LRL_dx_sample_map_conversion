@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 # TODO make paired a global variable
 """
-Takes a human-created sample2fastq mapping file in the format sample/tfqr1/fqr2(optional, and gets the dnanexus file ID equivalent GOD BLESS
+Takes a human-created sample2fastq mapping file in the format sample/tfqr1/fqr2(optional, 
+and gets the dnanexus file ID equivalent
 """
 import os
 import argparse
@@ -11,7 +12,8 @@ from dxpy.bindings.dxproject import DXProject
 
 def extract_from_hpc(s2fq):
     """
-    Given a human-created (or intervened) sample to fastq mapping, read the sample ID and associated fastq lane files into a dictionary
+    Given a human-created (or intervened) sample to fastq mapping, 
+    read the sample ID and associated fastq lane files into a dictionary
     """
     # First check if sample is paired-end
     paired = True
@@ -57,7 +59,8 @@ def get_file_id(file_id_dict, name):
 
 def construct_dx_s2fq(dx_dict, outfile):
     """
-    Given a dictionary of sample to file ID mappings, create the appropriate input text file for the NGS configuration manager
+    Given a dictionary of sample to file ID mappings, 
+    create the appropriate input text file for the NGS configuration manager
     """
     with open(outfile, 'w+') as out:
         print(dx_dict)
@@ -84,9 +87,12 @@ def parse_arguments():
     """ parse the CLI """
     parser = argparse.ArgumentParser(description='Extract DNAnexus logs into a tabular format',
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument('-s','--s2fq', required = True, help = 'The sample to fastq file generated using string file names')
-    parser.add_argument('-f','--folder', required = True, help = 'The folder that the input files are in - the format is just the folder name')
-    parser.add_argument('-p', '--projectid', required = True, help = 'DNAnexus project ID. You can find it from Project/Settings page')
+    parser.add_argument('-s','--s2fq', required = True, 
+                        help = 'The sample to fastq file generated using string file names')
+    parser.add_argument('-f','--folder', required = True, 
+                        help = 'The folder that the input files are in - the format is just the folder name')
+    parser.add_argument('-p', '--projectid', required = True, 
+                        help = 'DNAnexus project ID. You can find it from Project/Settings page')
     args = parser.parse_args()
     return args
 
